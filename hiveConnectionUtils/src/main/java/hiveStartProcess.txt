@@ -1,0 +1,4 @@
+Hive Server Start Command:
+
+hive --service hiveserver2
+
