@@ -1,0 +1,43 @@
+
+Step 1: beeline
+
+Step2 2: !connect jdbc:hive2://localhost:10000/pocs_db
+
+Step3: Enter usename (Here System username): hadoop
+       Enter password(here System password): hadoop
+       
+  Step4 : Success (Enter some commands ) : show databases;
+  
+  
+  Note: Must be start the hive server before start to beeline 
+  
+  hive --service hiveserver2
+  
+  
+  hive --service hiveserver2
+  
+  
+  hadoop@hadoop:~/spark/apache-hive-1.2.1-bin/conf$ beeline
+Beeline version 1.6.0 by Apache Hive
+beeline>  !connect jdbc:hive2://localhost:10000/pocs_db
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/hadoop/spark/spark-1.6.0-bin-hadoop2.6/lib/phoenix-4.7.0-HBase-1.1-client.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/hadoop/spark/spark-1.6.0-bin-hadoop2.6/lib/spark-assembly-1.6.0-hadoop2.6.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/hadoop/spark/spark-1.6.0-bin-hadoop2.6/lib/spark-examples-1.6.0-hadoop2.6.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+Connecting to jdbc:hive2://localhost:10000/pocs_db
+Enter username for jdbc:hive2://localhost:10000/pocs_db: hadoop
+Enter password for jdbc:hive2://localhost:10000/pocs_db: ******
+log4j:WARN No appenders could be found for logger (org.apache.hive.jdbc.Utils).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Connected to: Apache Hive (version 1.2.1)
+Driver: Spark Project Core (version 1.6.0)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://localhost:10000/pocs_db> show databases;
++-------------------+--+
+|   database_name   |
++-------------------+--+
+| airline           |
+| bim_user_db       |
+| dardb             |
