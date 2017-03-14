@@ -1,0 +1,12 @@
+	
+select split(worksite,'\\,')[0] as state1,split(worksite,'\\,')[1] as state2 ,split(worksite,'\\,')[2] as state3 from h1b_applications limit 1
+
+
+	
+select worksite as state from h1b_applications limit 1
+
+
+select split("116:151:1", '\\:')[0] as gid
+     , split("116:151:1", '\\:')[1] as sid
+     , split("116:151:1", '\\:')[2] as rid
+from h1b_applications
