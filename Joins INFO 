@@ -1,0 +1,44 @@
+hadoop fs -copyToLocal /data/joinsdb/* /home/hadoop/Desktop/joinsdb/
+
+SELECT COUNT(*) FROM countries; --->206
+ SELECT COUNT(*) FROM cities C; ====> 236
+
+SELECT * FROM cities CI    INNER JOIN
+countries c ON C.code=CI.country_code;
+O/P: 236
+
+SELECT *
+FROM COUNTRIES CO
+INNER JOIN 
+ CITIES CIT ON CIT.country_code=co.code
+0/P: 230
+
+co.code	co.name	co.continent	co.region	co.surface_area	co.indep_year	co.local_name	co.gov_form	co.capital	co.cap_long	co.cap_lat	cit.ame	cit.country_code	cit.city_proper_pop	cit.metroarea_pop	cit.urbanarea_pop
+
+ZWE	Zimbabwe	Africa	Eastern Africa	390757.0	1980	Zimbabwe	Republic	Harare	31.0672	-17.8312	Harare	ZWE	1606000.0	NULL	1606000.0
+Time taken: 19.601 seconds, Fetched: 230 row(s)
+
+SELECT cities.name AS city, countries.name AS country, region
+FROM cities
+INNER JOIN countries
+ON cities.country_code = countries.code;
+
+
+SELECT *
+FROM COUNTRIES CO
+INNER JOIN (SELECT * FROM  CITIES WHERE country_code='IND') CIT ON CIT.country_code=co.code
+O/P 18.Seconds
+
+
+SELECT *
+FROM COUNTRIES CO
+INNER JOIN  CITIES CIT ON CIT.country_code=co.code  WHERE country_code='IND'
+O/P :==>> 17.Seconds
+
+
+===============================================================
+
+SELECT c.code AS country_code, name, year, inflation_rate
+FROM countries AS c
+INNER JOIN economies AS e
+ON c.code = e.code;
