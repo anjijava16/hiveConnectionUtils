@@ -1,0 +1,182 @@
+CREATE EXTERNAL TABLE cities(
+	name                    String  ,
+  country_code            String,
+  city_proper_pop         double,
+  metroarea_pop           double,
+  urbanarea_pop           double
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION  '/data/joinsdb/external/cities/'
+tblproperties ("skip.header.line.count"="1");
+
+CREATE EXTERNAL TABLE countries (
+  code                  String,
+  name                  String,
+  continent             String,
+  region                String,
+  surface_area          double,
+  indep_year            int,
+  local_name            String,
+  gov_form              String,
+  capital               String,
+  cap_long              double,
+  cap_lat               double
+)ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION  '/data/joinsdb/external/countries/'
+tblproperties ("skip.header.line.count"="1");
+
+
+
+CREATE EXTERNAL TABLE languages (
+  lang_id               int    ,
+  code                  String,
+  name                  String,
+  percent_1               double,
+  official              boolean
+)ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION  '/data/joinsdb/external/languages/'
+tblproperties ("skip.header.line.count"="1");
+
+
+CREATE EXTERNAL TABLE economies (
+  econ_id               int     ,
+  code                  String,
+  year                  int,
+  income_group          String,
+  gdp_percapita         double,
+  gross_savings         double,
+  inflation_rate        double,
+  total_investment      double,
+  unemployment_rate     double,
+  exports               double,
+  imports               double
+)ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION  '/data/joinsdb/external/economies/'
+tblproperties ("skip.header.line.count"="1");
+
+
+
+CREATE EXTERNAL TABLE currencies (
+  curr_id               int,
+  code                  String,
+  basic_unit            String,
+  curr_code             String,
+  frac_unit             String,
+  frac_perbasic         double
+)ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION  '/data/joinsdb/external/currencies/'
+tblproperties ("skip.header.line.count"="1");
+
+
+
+
+CREATE EXTERNAL TABLE populations (
+  pop_id                int,
+  country_code          String,
+  year                  int,
+  fertility_rate        double,
+  life_expectancy       double,
+  size                  double
+)ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION  '/data/joinsdb/external/populations/'
+tblproperties ("skip.header.line.count"="1");
+
+
+
+CREATE EXTERNAL TABLE countries_plus (
+  name                  String,
+  continent             String,
+  code                  String ,
+  surface_area          double,
+  geosize_group         String
+)ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION  '/data/joinsdb/external/countries_plus/'
+tblproperties ("skip.header.line.count"="1");
+
+
+
+CREATE EXTERNAL TABLE economies2010 (
+  code                  String,     
+  year                  int,
+  income_group          String,
+  gross_savings         double
+)ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION  '/data/joinsdb/external/economies2010/'
+tblproperties ("skip.header.line.count"="1");
+
+
+CREATE EXTERNAL TABLE economies2015 (
+  code                  String     ,
+  year                  int,
+  income_group          String,
+  gross_savings         double
+)ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION  '/data/joinsdb/external/economies20105/'
+tblproperties ("skip.header.line.count"="1");
+
+
+
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -mkdir -p /data/joinsdb/external/cities
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -mkdir -p /data/joinsdb/external/countries
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -mkdir -p /data/joinsdb/external/languages
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -mkdir -p /data/joinsdb/external/economies
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -mkdir -p /data/joinsdb/external/currencies
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -mkdir -p /data/joinsdb/external/populations
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -mkdir -p /data/joinsdb/external/countries_plus
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -mkdir -p /data/joinsdb/external/economies2010
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -mkdir -p /data/joinsdb/external/economies2015
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -put cities.csv /data/joinsdb/external/cities/
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -put countries.csv /data/joinsdb/external/countries/
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -put languages.csv /data/joinsdb/external/languages/
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -put economies.csv /data/joinsdb/external/economies/
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -put currencies.csv /data/joinsdb/external/currencies/
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -put populations.csv /data/joinsdb/external/populatios/
+
+CREATE TABLE economies2010 (
+  code                  String     PRIMARY KEY,
+  year                  INTEGER,
+  income_group          String,
+  gross_savings         bigdecimal
+);
+
+CREATE TABLE economies2015 (
+  code                  String     PRIMARY KEY,
+  year                  INTEGER,
+  income_group          String,
+  gross_savings         bigdecimal
+);
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+put: `/data/joinsdb/external/populatios/': No such file or directory
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -put populations.csv /data/joinsdb/external/populations/
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -put countries_plus.csv /data/joinsdb/external/countries_plus/
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -put economies2010.csv /data/joinsdb/external/economies2010/
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ hadoop fs -put economies2015.csv /data/joinsdb/external/economies2015/
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+hadoop@hadoop:~/Desktop/databases/countries2$ 
