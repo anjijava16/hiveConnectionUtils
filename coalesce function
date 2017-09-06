@@ -1,0 +1,36 @@
+up vote
+0
+down vote
+If customer primary contact medium is email, if email is null then phonenumber, and if phonenumber is also null then address. It would be written using COALESCE as
+
+coalesce(email,phonenumber,address) 
+while the same in hive can be achieved by chaining together nvl as
+
+nvl(email,nvl(phonenumber,nvl(address,'n/a')))
+
+
+
+There is a function called COALESCE that exists in Hive SQL. It has the following syntax.
+
+COALESCE(field1, field2, … , fieldn)
+
+What does it do?
+
+Of the fields above (field1, field2, … , fieldn), for each record returned it returns the value of the first field of the ones listed in the COALESCE function that is not NULL. If all of the fields are NULL, it returns NULL.
+
+For example, let’s say one had 3 date fields, datefield1, datefield2, and datefield3 from the table tblDates.
+
+TBLDATES
+PRIMARY_KEY	DATEFIELD1	DATEFIELD2	DATEFIELD3
+1	NULL	NULL	1993-06-04
+The code:
+
+
+SELECT COALESCE(datefield1, datefield2, datefield3) as first_date_found
+FROM
+tblDates
+WHERE
+primary_key = 1
+
+will return ‘1993-06-04’
+
