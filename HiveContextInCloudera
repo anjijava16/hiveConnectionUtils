@@ -1,0 +1,14 @@
+hivecontext show databases not working in cloudera
+=======================================================
+
+use HiveContext to fetch data from the hive. set hive.metastore.uris by
+
+spark code -
+
+System.setProperty("hive.metastore.uris","thrift://hostserver:9083")
+val hivecontext = new HiveContext(sparkContext)
+val tdf = hivecontext.sql("SHOW DATABASES");
+spark-shell
+
+spark-shell --driver-java-options "-Dhive.metastore.uris=thrift://hostserver:9083"
+
